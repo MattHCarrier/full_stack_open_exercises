@@ -1,58 +1,57 @@
 import React from "react";
+import Course from "./components/Course";
 
-const Header = ({course}) => {
 
-    return <h1>{course}</h1>
-}
-
-const Part = ({name, exercise}) => (
-    <p>{name} {exercise}</p>
-)
-
-const Content = ({parts}) => {
-
-    const PartItems = parts.map(part => <Part name={part.name} exercise={part.exercises}/>);
-    return (
-        <div>
-            {PartItems}
-        </div>
-    )
-}
-const Total = ({parts}) => {
-    const sum = (a,b) => a+b
-    const exercises = parts.map(part => part.exercises);
-    const total = exercises.reduce(sum,0);
- return(
-     <div>
-        <p>{total}</p>
-    </div>
- )
-}
 const App = () => {
-  const course = {
+  const courses = [
+    {
       name: 'Half Stack application development',
+      id: 1,
       parts: [
-          {
-              name: 'Fundamentals of React',
-              exercises: 10
-          },
-          {
-              name: 'Using props to pass data',
-              exercises: 7
-          }
-          , {
-              name: 'State of a component',
-              exercises: 14
-          }
+        {
+          name: 'Fundamentals of React',
+          exercises: 10,
+          id: 1
+        },
+        {
+          name: 'Using props to pass data',
+          exercises: 7,
+          id: 2
+        },
+        {
+          name: 'State of a component',
+          exercises: 14,
+          id: 3
+        },
+        {
+          name: 'Redux',
+          exercises: 11,
+          id: 4
+        }
       ]
-  }
+    },
+    {
+      name: 'Node.js',
+      id: 2,
+      parts: [
+        {
+          name: 'Routing',
+          exercises: 3,
+          id: 1
+        },
+        {
+          name: 'Middlewares',
+          exercises: 7,
+          id: 2
+        }
+      ]
+    }
+  ]
 
-
+    const courseList = courses.map(course => <Course course={course}/> )
   return (
       <div>
-        <Header course={course.name}/>
-        <Content parts={course.parts}/>
-          <Total parts={course.parts}/>
+          {courseList}
       </div>
   )
 }
